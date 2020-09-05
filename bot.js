@@ -24,10 +24,13 @@ client.on('message', async message => {
                         responseType: 'stream'
                     })
                         .then(response => {
-                            console.log(typeof response.data)
-                            message.channel.send('Olha a cara do belezão!', {
-                                files: [response.data]
-                            })
+                            if (response.headers['content-type'] !== 'text/html') {
+                                message.channel.send('Olha a cara do belezão!', {
+                                    files: [response.data]
+                                })
+                            } else {
+                                message.channel.send(`Eita, não consegui achar a foto desse R.A :(`)
+                            }
                         })
                         .catch(error => {
                             message.channel.send(`Eita, não consegui achar a foto desse R.A :(`)
