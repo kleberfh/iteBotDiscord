@@ -5,7 +5,7 @@ const axios = require('axios');
 const fs = require('fs');
 
 client.on('ready', () => {
-    client.user.setActivity('Assistindo aula da Audrey e melhorando meu vocabulario :)')
+    client.user.setActivity('Assistindo aula da Audrey e melhorando meu vocabulario :)\n\n$comandos')
 })
 
 client.on('message', async message => {
