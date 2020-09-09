@@ -47,7 +47,12 @@ client.on('message', async message => {
                 message.channel.send("Meu criador é o Klebão, o mlk é brabo!")
                 return;
             case 'comandos':
-                message.channel.send('\nEsses são meus comandos: \n\n$foto [R.A] - Mostra a foto do aluno pelo R.A \n$criador - Exibe quem me criou. \n$comandos - Para exibir os comandos. \n$destruir_provas - Limpa os comandos enviados ao bot e o as respostas do bot')
+                message.channel.send('\nEsses são meus comandos: ' +
+                    '\n\n$foto [R.A] - Mostra a foto do aluno pelo R.A ' +
+                    '\n$criador - Exibe quem me criou. ' +
+                    '\n$comandos - Para exibir os comandos. ' +
+                    '\n$destruir_provas - Limpa os comandos enviados ao bot e o as respostas do bot. ' +
+                    '\n$nome - Para o ober o nome faça login em https://www.ite.edu.br/iniciacao/Login após isso entre em https://www.ite.edu.br/iniciacao/Iniciacao/BuscarAluno/?ra= com o R.A no final')
                 return;
             case 'info':
                 console.log(client)
