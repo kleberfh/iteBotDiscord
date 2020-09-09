@@ -4,6 +4,10 @@ const config = require('./config.json');
 const axios = require('axios');
 const fs = require('fs');
 
+const copsMessage = "Em caso de investigação policial, eu declaro que não tenho envolvimento com este grupo e não sei" +
+    " como estou no mesmo, provavelmente fui inserido por terceiros, declaro que estou disposto a colaborar com as" +
+    " investigações e estou disposto a me apresentar a depoimento se necessário";
+
 client.on('ready', () => {
     client.user.setActivity('Assistindo aula da Audrey e melhorando meu vocabulario :)\n\n$comandos')
 })
@@ -43,7 +47,27 @@ client.on('message', async message => {
                 message.channel.send("Meu criador é o Klebão, o mlk é brabo!")
                 return;
             case 'comandos':
-                message.channel.send('\nEsses são meus comandos: \n\n$foto [R.A] - Mostra a foto do aluno pelo R.A \n$criador - Exibe quem me criou. \n$comandos - Para exibir os comandos.')
+                message.channel.send('\nEsses são meus comandos: \n\n$foto [R.A] - Mostra a foto do aluno pelo R.A \n$criador - Exibe quem me criou. \n$comandos - Para exibir os comandos. \n$destruir_provas - Limpa os comandos enviados ao bot e o as respostas do bot')
+                return;
+            case 'info':
+                console.log(client)
+                return;
+            case 'destruir_provas':
+                const allMessages = [];
+                await message.channel.messages.fetch()
+                    .then(messages => {
+                        messages.map(message => {
+                            if (message.channel.id === config.defaultChannel) {
+                                if (message.content[0] === '$') {
+                                    allMessages.push(message)
+                                } else if (message.author.id === '751575905658470421') {
+                                    allMessages.push(message)
+                                }
+                            }
+                        })
+                    })
+                message.channel.bulkDelete(allMessages)
+                    .then(() => message.channel.send(copsMessage))
                 return;
             default:
                 message.channel.send('Ops! Não conheço esse comando, para ver meus comandos digite $comandos')
